@@ -18,7 +18,7 @@ sudo apt install -y "${apps[@]}"
 
 wget https://github.com/jingweno/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz -O /tmp/ccat-linux-amd64-1.1.0.tar.gz
 sudo tar -zxvf /tmp/ccat-linux-amd64-1.1.0.tar.gz -C /usr/local/bin/
-ln -sf /usr/local/bin/linux-amd64-1.1.0/ccat /usr/local/bin/ccat
+sudo ln -sf /usr/local/bin/linux-amd64-1.1.0/ccat /usr/local/bin/ccat
 
 
 #oh my zsh
