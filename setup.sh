@@ -13,7 +13,7 @@ apps=(
 	zsh
 )
 
-sudo apt install "${apps[@]}"
+sudo apt install -y "${apps[@]}"
 # apt install python-pip python-dev build-essential
 
 wget https://github.com/jingweno/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz -O /tmp/ccat-linux-amd64-1.1.0.tar.gz
