@@ -6,8 +6,8 @@ CMD="curl -#L"
 if [ -z "$CMD" ]; then
   echo "No curl or wget available. Aborting."
 else
-  echo "Installing dotfiles"
-  mkdir -p "$HOME/dotfiles" && \
+  echo "Installing dotfiles-server"
+  mkdir -p "$HOME/dotfiles-server" && \
   eval "$CMD https://github.com/0i0/dotfiles-server/tarball/master | tar -xzv -C ~/dotfiles-server --strip-components=1 --exclude='{.gitignore}'"
   . "$HOME/dotfiles-server/setup.sh"
 fi
