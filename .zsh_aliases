@@ -5,6 +5,11 @@ alias dnf="sudo dnf"
 alias rr="rm -rf"
 
 # Directory traversal
+function cs () {
+    cd $1
+    ll
+}
+alias cd=cs
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -20,6 +25,7 @@ else # macOS `ls`
   colorflag="-G"
   export LSCOLORS='BxBxhxDxfxhxhxhxhxcxcx'
 fi
+
 alias l="ls -lF ${colorflag}"
 alias la="ls -laF ${colorflag}"
 alias lsd="ls -lF ${co#lorflag} | grep --color=never '^d'"
@@ -28,7 +34,6 @@ alias ls="command ls ${colorflag}"
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ipl="hostname -I"
-alias ips="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 # Prevent ZSH from throwing autocorrect for weird-looking Sass commands
 alias sass='nocorrect sass'

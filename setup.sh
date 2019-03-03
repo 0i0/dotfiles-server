@@ -7,7 +7,6 @@ sudo apt update
 
 apps=( 
 	git
-	screen
 	tmux
 	wget
 	zsh
@@ -20,12 +19,17 @@ wget https://github.com/jingweno/ccat/releases/download/v1.1.0/linux-amd64-1.1.0
 sudo tar -zxvf /tmp/ccat-linux-amd64-1.1.0.tar.gz -C /usr/local/bin/
 sudo ln -sf /usr/local/bin/linux-amd64-1.1.0/ccat /usr/local/bin/ccat
 
-
 #oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-rm -rf ~/.oh-my-zsh/themes
+# zsh-autosugesstions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
 #0i0 theme
+rm -rf ~/.oh-my-zsh/themes
 git clone https://github.com/0i0/0i0.zsh-theme.git ~/.oh-my-zsh/themes
 
 cd "$(dirname "${BASH_SOURCE}")"
@@ -50,3 +54,10 @@ if [ "$file" != ".git" ] && \
     ln -sf $PWD/$file $HOME/
 fi
 done
+
+cat >> $HOME/.bashrc << EndOfMessage 
+if [[ \$- == *i* ]]; then
+    export SHELL=zsh
+    zsh -l
+fi
+EndOfMessage
