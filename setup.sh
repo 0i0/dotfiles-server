@@ -42,6 +42,7 @@ git fetch --all
 git reset --hard origin/master
 
 git pull --recurse-submodules origin master
+git submodule update --init --recursive
 
 echo "linking"
 # Symlink dotfiles
