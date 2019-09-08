@@ -41,7 +41,7 @@ git remote add origin https://github.com/0i0/dotfiles-server.git
 git fetch --all
 git reset --hard origin/master
 
-git pull origin master
+git pull --recurse-submodules origin master
 
 echo "linking"
 # Symlink dotfiles
