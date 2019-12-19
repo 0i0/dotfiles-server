@@ -22,6 +22,8 @@ sudo ln -sf /usr/local/bin/linux-amd64-1.1.0/ccat /usr/local/bin/ccat
 #oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
+ssh-keyscan github.com >> githubKey
+echo "$(ssh-keygen -lf githubKey)"  >> ~/.ssh/known_hosts
 # zsh-autosugesstions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
