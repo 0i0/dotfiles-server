@@ -61,6 +61,7 @@ DISABLE_AUTO_UPDATE="true"
 plugins=(
   git
   zsh-syntax-highlighting
+  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
