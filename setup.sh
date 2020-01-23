@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 # Ask for the administrator password upfront
 
 # Make sure we’re using the latest repositories
