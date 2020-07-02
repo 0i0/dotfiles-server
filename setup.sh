@@ -20,7 +20,7 @@ sudo tar -zxvf /tmp/ccat-linux-amd64-1.1.0.tar.gz -C /usr/local/bin/
 sudo ln -sf /usr/local/bin/linux-amd64-1.1.0/ccat /usr/local/bin/ccat
 
 #oh my zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 ssh-keyscan github.com >> /tmp/githubKey
 echo "$(ssh-keygen -lf /tmp/githubKey)"  >> ~/.ssh/known_hosts
