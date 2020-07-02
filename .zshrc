@@ -105,4 +105,4 @@ echo -e ""
 source $HOME/.zsh_exports
 source $HOME/.zsh_aliases
 
-if [ "$TMUX" = "" ]; then tmux; fi
+# if [ "$TMUX" = "" ]; then tmux; fi
