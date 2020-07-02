@@ -1,7 +1,11 @@
 #!/bin/bash
 set -x
 # Ask for the administrator password upfront
+sudo killall apt apt-get
 
+sudo rm /var/lib/apt/lists/lock
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock*
 # Make sure we’re using the latest repositories
 sudo apt update
 
