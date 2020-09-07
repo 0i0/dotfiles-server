@@ -95,6 +95,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+bindkey -e
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
+
 echo -e "\x1b[36m ______     __  __     ______     __  __     __      "
 echo -e "\x1b[32m/\x1b[36m\  __ \ \x1b[32m  /\x1b[36m\ \_\ \ \x1b[32m  /\x1b[36m\  __ \ \x1b[32m  /\x1b[36m\ \_\ \ \x1b[32m  /\x1b[36m\ \     "
 echo -e "\x1b[32m\ \x1b[36m\  __ \ \x1b[32m \ \x1b[36m\  __ \ \x1b[32m \ \x1b[36m\ \\\\\x1b[32m/\x1b[36m\ \ \x1b[32m \ \x1b[36m\____ \ \x1b[32m \ \x1b[36m\_\    "
