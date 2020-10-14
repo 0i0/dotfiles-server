@@ -4,6 +4,9 @@ alias _="sudo -E"
 alias dnf="sudo dnf"
 alias rr="rm -rf"
 
+# Git
+alias po="git push origin"
+
 # Directory traversal
 function cs () {
     cd $1
@@ -31,8 +34,18 @@ alias la="ls -laF ${colorflag}"
 alias lsd="ls -lF ${co#lorflag} | grep --color=never '^d'"
 alias ls="command ls ${colorflag}"
 
+# Always enable colored `grep` output
+# Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+alias gerp='grep --color=auto'
+alias grp='grep --color=auto'
+
+
 # IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ip="curl ipinfo.io/ip"
 alias ipl="hostname -I"
 
 # Prevent ZSH from throwing autocorrect for weird-looking Sass commands
