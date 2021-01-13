@@ -63,7 +63,8 @@ if [ "$file" != ".git" ] && \
 fi
 done
 
-cat >> $HOME/.bashrc << EndOfMessage 
+grep -Fq "export SHELL=zsh" $HOME/.bashrc && echo "zsh already default" || cat >> $HOME/.bashrc << EndOfMessage
+
 if [[ \$- == *i* ]]; then
     export SHELL=zsh
     zsh -l
