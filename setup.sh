@@ -1,13 +1,14 @@
 #!/bin/bash
 set -x
+sudo -v
 # Ask for the administrator password upfront
-sudo killall apt apt-get
+killall apt apt-get
 
-sudo rm /var/lib/apt/lists/lock
-sudo rm /var/cache/apt/archives/lock
-sudo rm /var/lib/dpkg/lock*
+rm /var/lib/apt/lists/lock
+rm /var/cache/apt/archives/lock
+rm /var/lib/dpkg/lock*
 # Make sure we’re using the latest repositories
-sudo apt update
+apt update
 
 apps=( 
 	git
@@ -16,12 +17,12 @@ apps=(
 	zsh
 )
 
-sudo apt install -y "${apps[@]}"
+apt install -y "${apps[@]}"
 # apt install python-pip python-dev build-essential
 
 wget https://github.com/jingweno/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz -O /tmp/ccat-linux-amd64-1.1.0.tar.gz
-sudo tar -zxvf /tmp/ccat-linux-amd64-1.1.0.tar.gz -C /usr/local/bin/
-sudo ln -sf /usr/local/bin/linux-amd64-1.1.0/ccat /usr/local/bin/ccat
+tar -zxvf /tmp/ccat-linux-amd64-1.1.0.tar.gz -C /usr/local/bin/
+ln -sf /usr/local/bin/linux-amd64-1.1.0/ccat /usr/local/bin/ccat
 
 #oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
