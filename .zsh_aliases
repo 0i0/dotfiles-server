@@ -41,6 +41,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else
     ls_cmd=ls
 fi
+alias ls="${ls_cmd} --color"
+alias ll="${ls_cmd} -lF --color"
 alias la="${ls_cmd} -laF --color"
 alias lsd="${ls_cmd} -lF | grep --color=never '^d'"
 
@@ -71,3 +73,5 @@ alias ipl="hostname -I"
 
 # Prevent ZSH from throwing autocorrect for weird-looking Sass commands
 alias sass='nocorrect sass'
+
+alias nano="/usr/local/bin/nano"
