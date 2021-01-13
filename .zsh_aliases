@@ -41,7 +41,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else
     ls_cmd=ls
 fi
-alias ls="${ls_cmd} --color"
 alias la="${ls_cmd} -laF --color"
 alias lsd="${ls_cmd} -lF | grep --color=never '^d'"
 
