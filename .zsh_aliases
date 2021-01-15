@@ -14,21 +14,15 @@ alias grhh="git reset HEAD --hard"
 alias k='kubectl'
 alias kg='kubectl get'
 alias kgpod='kubectl get pod'
-alias kgall=kubectl get --all-namespaces all
 alias kdp='kubectl describe pod'
-# kubectl apply
 alias kap='kubectl apply'
-# kubectl delete
 alias krm='kubectl delete'
 alias krmf='kubectl delete -f'
-# kubectl services
-alias kgsvc='kubectl get service'
-# kubectl deployments
-alias kgdep='kubectl get deployments'
-# kubectl misc
-alias kl='kubectl logs'
 alias klf='kubectl logs -f'
-alias kei='kubectl exec -it'
+alias kei='kubectl exec -i -t'
+kgdp() { kg pods | grep "Running" | grep "deployment" | sed 's/ .*//' | grep $1 }
+ktail() { klf $(kgdp $1 | head -n $2 | tail -n 1)}
+kssh() { kei $(kgdp $1 | head -n $2 | tail -n 1) -- bash}
 
 # Directory listing
 # Colors courtesy https://github.com/sharkdp/vivid
@@ -36,18 +30,17 @@ export LS_COLORS='or=0;38;2;0;0;0;48;2;255;92;87:fi=0:so=0;38;2;0;0;0;48;2;255;1
 
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    ls_cmd=gls
-else
-    ls_cmd=ls
-fi
-alias la="${ls_cmd} -laF --color"
-alias lsd="${ls_cmd} -lF | grep --color=never '^d'"
+alias lsd="ls -lF | grep --color=never '^d'"
 
 # Directory traversal
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias ls="gls -AGh --color --group-directories-first"
+else
+    alias ls="ls -AGh --color --group-directories-first"
+fi
 function cs () {
     cd $1
-    ${ls_cmd} -laF --color 
+    ls -l --group-directories-first
 }
 alias cd=cs
 alias ..="cd .."
@@ -64,10 +57,11 @@ alias egrep='egrep --color=auto'
 alias gerp='grep --color=auto'
 alias grp='grep --color=auto'
 
-
 # IP addresses
 alias ip="curl ipinfo.io/ip"
 alias ipl="hostname -I"
 
 # Prevent ZSH from throwing autocorrect for weird-looking Sass commands
 alias sass='nocorrect sass'
+
+alias nano="/usr/local/bin/nano"

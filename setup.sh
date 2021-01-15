@@ -1,8 +1,7 @@
 #!/bin/bash
 set -x
-
-# Ask for the administrator password upfront
 sudo -v
+# Ask for the administrator password upfront
 killall apt apt-get
 
 rm /var/lib/apt/lists/lock
@@ -20,10 +19,7 @@ apps=(
 apt install -y "${apps[@]}"
 # apt install python-pip python-dev build-essential
 
-wget https://github.com/jingweno/ccat/releases/download/v1.1.0/linux-amd64-1.1.0.tar.gz -O /tmp/ccat-linux-amd64-1.1.0.tar.gz
-tar -zxvf /tmp/ccat-linux-amd64-1.1.0.tar.gz -C /usr/local/bin/
-ln -sf /usr/local/bin/linux-amd64-1.1.0/ccat /usr/local/bin/ccat
-
+ZSH=$HOME/.oh-my-zsh
 #oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -63,7 +59,8 @@ if [ "$file" != ".git" ] && \
 fi
 done
 
-cat >> $HOME/.bashrc << EndOfMessage 
+grep -Fq "export SHELL=zsh" $HOME/.bashrc && echo "zsh already default" || cat >> $HOME/.bashrc << EndOfMessage
+
 if [[ \$- == *i* ]]; then
     export SHELL=zsh
     zsh -l
