@@ -67,3 +67,4 @@ if [[ \$- == *i* ]]; then
     zsh -l
 fi
 EndOfMessage
+zsh
