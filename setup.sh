@@ -15,6 +15,7 @@ apps=(
 	tmux
 	wget
 	zsh
+    vim
 )
 apt install -y "${apps[@]}"
 # apt install python-pip python-dev build-essential

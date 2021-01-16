@@ -20,9 +20,9 @@ alias krm='kubectl delete'
 alias krmf='kubectl delete -f'
 alias klf='kubectl logs -f'
 alias kei='kubectl exec -i -t'
-kgdp() { kg pods | grep "Running" | grep "deployment" | sed 's/ .*//' | grep $1 }
-ktail() { klf $(kgdp $1 | head -n $2 | tail -n 1)}
-kssh() { kei $(kgdp $1 | head -n $2 | tail -n 1) -- bash}
+function kgdp() { kg pods | grep "Running" | grep "deployment" | sed 's/ .*//' | grep $1 }
+function ktail() { klf $(kgdp $1 | head -n $2 | tail -n 1)}
+function kssh() { kei $(kgdp $1 | head -n $2 | tail -n 1) -- bash}
 
 # Directory listing
 # Colors courtesy https://github.com/sharkdp/vivid
@@ -33,14 +33,18 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 alias lsd="ls -lF | grep --color=never '^d'"
 
 # Directory traversal
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    alias ls="gls -AGh --color --group-directories-first"
+    echo using gls
+    alias ls=gls -AGh --color --group-directories-first
 else
-    alias ls="ls -AGh --color --group-directories-first"
+    echo using ls
+    alias ls=ls -AGh --color --group-directories-first
 fi
+[ -z ${cd+x} ] || cd_cmd=cd
 function cs () {
-    cd $1
-    ls -l --group-directories-first
+    $cd_cmd $1
+    ls -AGhl --color --group-directories-first
 }
 alias cd=cs
 alias ..="cd .."
