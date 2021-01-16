@@ -16,8 +16,8 @@ apps=(
 	zsh
     vim
 )
+
 apt install -y "${apps[@]}"
-# apt install python-pip python-dev build-essential
 
 ZSH=$HOME/.oh-my-zsh
 #oh my zsh
@@ -66,3 +66,5 @@ if [[ \$- == *i* ]]; then
     zsh -l
 fi
 EndOfMessage
+
+chsh -s /bin/zsh $USER
