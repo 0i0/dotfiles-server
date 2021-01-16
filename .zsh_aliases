@@ -34,9 +34,9 @@ alias lsd="ls -lF | grep --color=never '^d'"
 
 # Directory traversal
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    alias ls=gls -AGh --color --group-directories-first
+    alias ls="gls -AGh --color --group-directories-first"
 else
-    alias ls=ls -AGh --color --group-directories-first
+    alias ls="ls -AGh --color --group-directories-first"
 fi
 
 [ -z ${cd+x} ] || cd_cmd=cd
@@ -44,6 +44,7 @@ function cs () {
     $cd_cmd $1
     ls -AGhl --color --group-directories-first
 }
+
 alias cd=cs
 alias ..="cd .."
 alias ...="cd ../.."
