@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 sudo -v
 # Ask for the administrator password upfront
 killall apt apt-get
@@ -67,4 +66,3 @@ if [[ \$- == *i* ]]; then
     zsh -l
 fi
 EndOfMessage
-zsh

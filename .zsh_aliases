@@ -33,14 +33,12 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 alias lsd="ls -lF | grep --color=never '^d'"
 
 # Directory traversal
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo using gls
     alias ls=gls -AGh --color --group-directories-first
 else
-    echo using ls
     alias ls=ls -AGh --color --group-directories-first
 fi
+
 [ -z ${cd+x} ] || cd_cmd=cd
 function cs () {
     $cd_cmd $1
