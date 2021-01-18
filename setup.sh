@@ -55,9 +55,18 @@ if [ "$file" != ".git" ] && \
    [ "$file" != "remote-setup.sh" ] && \
    [ "$file" != "README.md" ] && \
    [ "$file" != "images" ]; then
+    rm ${HOME}/${file} 2&>/dev/null
     ln -sf $PWD/$file $HOME/
 fi
 done
+
+# symlink .config folder
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    brew install coreutils
+    /usr/local/opt/coreutils/libexec/gnubin/cp -as $PWD/.config/ $HOME
+else
+    cp -as $PWD/.config/ $HOME
+fi
 
 grep -Fq "export SHELL=zsh" $HOME/.bashrc && echo "zsh already default" || cat >> $HOME/.bashrc << EndOfMessage
 
