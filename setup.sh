@@ -1,13 +1,16 @@
 #!/bin/bash
 sudo -v
-# Ask for the administrator password upfront
-killall apt apt-get
+sudo -l && SUDO=YES 
 
-rm /var/lib/apt/lists/lock
-rm /var/cache/apt/archives/lock
-rm /var/lib/dpkg/lock*
+# Ask for the administrator password upfront
+${SUDO:+"sudo"} killall apt apt-get
+
+${SUDO:+"sudo"} rm /var/lib/apt/lists/lock
+${SUDO:+"sudo"} rm /var/cache/apt/archives/lock
+${SUDO:+"sudo"} rm /var/lib/dpkg/lock*
+
 # Make sure we’re using the latest repositories
-apt update
+${SUDO:+"sudo"} apt update
 
 apps=( 
 	git
@@ -17,7 +20,7 @@ apps=(
     vim
 )
 
-apt install -y "${apps[@]}"
+${SUDO:+"sudo"} apt install -y "${apps[@]}"
 
 ZSH=$HOME/.oh-my-zsh
 #oh my zsh
@@ -34,6 +37,13 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 #0i0 theme
 rm -rf ~/.oh-my-zsh/themes
 git clone https://github.com/0i0/0i0.zsh-theme.git ~/.oh-my-zsh/themes
+
+# micro
+curl https://getmic.ro | bash
+${SUDO:+"sudo"} mv micro /usr/local/bin/micro
+mkdir -p $HOME/.config/micro/colorschemes/
+curl -o $HOME/.config/micro/colorschemes/bananablueberry.micro https://raw.githubusercontent.com/0i0/banana-blueberry-themes/master/micro/bananablueberry.micro  
+
 
 cd "$(dirname "${BASH_SOURCE}")"
 
@@ -76,4 +86,4 @@ if [[ \$- == *i* ]]; then
 fi
 EndOfMessage
 
-chsh -s /bin/zsh $USER
+${SUDO:+"sudo"} chsh -s /bin/zsh $USER
