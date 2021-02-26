@@ -1,7 +1,7 @@
 #!/bin/sh
 CMD="curl -L"
 if [ -z "$CMD" ]; then
-  echo "No curl or wget available. Aborting."
+  echo "No curl available. Aborting."
 else
   echo -e "\x1b[36m ______     __  __     ______     __  __     __      "
   echo -e "\x1b[32m/\x1b[36m\  __ \ \x1b[32m  /\x1b[36m\ \_\ \ \x1b[32m  /\x1b[36m\  __ \ \x1b[32m  /\x1b[36m\ \_\ \ \x1b[32m  /\x1b[36m\ \     "
