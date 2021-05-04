@@ -20,7 +20,7 @@ alias krm='kubectl delete'
 alias krmf='kubectl delete -f'
 alias klf='kubectl logs -f'
 alias kei='kubectl exec -i -t'
-function kgdp() { kg pods | grep "Running" | grep "deployment" | sed 's/ .*//' | grep $1 }
+function kgdp() { kg pods | grep "Running" | sed 's/ .*//' | grep $1 }
 function ktail() { klf $(kgdp $1 | head -n $2 | tail -n 1)}
 function kssh() { kei $(kgdp $1 | head -n $2 | tail -n 1) -- bash}
 
