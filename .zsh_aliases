@@ -32,8 +32,46 @@ function dssh() {
     docker exec -it $(docker ps | grep $1 | sed 's/ .*//') sh -c "$2"
 }
 
-function sbs() {
-    ffmpeg -y -i $1 -i $2 -filter_complex "[0:v][1:v]hstack=inputs=2:shortest=1[out]" -map "0:a" -map "[out]" -crf 3 -shortest sbs.mp4
+# Video Manipulation
+ffs() {
+    i1="$1"
+    i2="$2"
+    s1="$(basename $i1 .${i1:e})"
+    s2="$(basename $i2 .${i2:e})"
+    parent_dir="$(dirname $i1)"
+    output_file="${parent_dir}/__sbs_${s1}_${s2}.${i1:e}"
+    ffmpeg -y -i $1 -i $2 -filter_complex "$3" -map "0:a" -map "[out]" -crf 3 -pix_fmt yuv420p -shortest "$output_file"
+}
+
+# Child functions with filter complex string as parameter
+ffsh() {
+    ffs "$1" "$2" "[0:v][1:v]hstack=inputs=2:shortest=1[out]"
+}
+
+ffsv() {
+    ffs "$1" "$2" "[0:v][1:v]vstack=inputs=2:shortest=1[out]"
+}
+
+ffsingle(){
+  i1="$1"
+  s1="$(basename $i1 .${i1:e})"
+  parent_dir="$(dirname $i1)"
+  output_file="${parent_dir}/_${s1}.${i1:e}"
+  ffmpeg -y -i $1 -filter_complex "$2" -crf 3 -pix_fmt yuv420p -shortest "$output_file"
+}
+
+ffdn() {
+  ffsingle "$1" "[0:v]scale=iw/2:ih/2:force_original_aspect_ratio=decrease,pad=ceil(iw/2)*2:ceil(ih/2)*2"
+}
+
+ffloop() {
+  ffsingle "$1" "[0:v]reverse[vr];[0:v][vr]concat=n=2:v=1"
+}
+
+ffconcat () {
+  input_dir="$1"
+  output_file="${input_dir:r}_concat.mp4"
+  ffmpeg  -f concat -safe 0 -i <(for f in *.mp4; do echo "file '$input_dir'"; done) -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p "$output_file"
 }
 
 # Directory listing
