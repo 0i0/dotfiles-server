@@ -57,7 +57,7 @@ ffsingle(){
   s1="$(basename $i1 .${i1:e})"
   parent_dir="$(dirname $i1)"
   output_file="${parent_dir}/_${s1}.${i1:e}"
-  ffmpeg -y -i $1 -filter_complex "$2" -crf 3 -pix_fmt yuv420p -shortest "$output_file"
+  ffmpeg -y -i $1 -filter_complex "$2" -crf 3 -pix_fmt yuv420p "$output_file"
 }
 
 ffdn() {
@@ -65,7 +65,7 @@ ffdn() {
 }
 
 ffloop() {
-  ffsingle "$1" "[0:v]reverse[vr];[0:v][vr]concat=n=2:v=1"
+  ffsingle "$1" "[0:v]split=2[first][second];[second]reverse[revsecond];[first][revsecond]concat=n=2:v=1:a=0"
 }
 
 ffconcat () {
